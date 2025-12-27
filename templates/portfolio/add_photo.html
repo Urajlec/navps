@@ -1,0 +1,104 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Добавить фотографию{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">
+                        {% if category %}
+                            Добавить фотографию в категорию: "{{ category.name }}"
+                        {% else %}
+                            Добавить новую фотографию
+                        {% endif %}
+                    </h2>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Ошибки:</strong>
+                                <ul>
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">Название *</label>
+                            {{ form.title }}
+                            {% if form.title.help_text %}
+                                <small class="form-text text-muted">{{ form.title.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Описание</label>
+                            {{ form.description }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.category.id_for_label }}" class="form-label">Категория *</label>
+                            {{ form.category }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.image.id_for_label }}" class="form-label">Фотография *</label>
+                            {{ form.image }}
+                            <small class="form-text text-muted">
+                                Рекомендуемый размер: не более 10MB. Поддерживаемые форматы: JPG, PNG, GIF.
+                            </small>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            {{ form.is_featured }}
+                            <label for="{{ form.is_featured.id_for_label }}" class="form-check-label">
+                                Показать на главной странице
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% if category %}{% url 'category_detail' category.id %}{% else %}{% url 'index' %}{% endif %}" 
+                               class="btn btn-secondary me-md-2">
+                                Отмена
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Загрузить фотографию
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5>Советы по загрузке:</h5>
+                    <ul>
+                        <li>Используйте описательные названия для фотографий</li>
+                        <li>Добавляйте краткое описание для лучшего понимания контекста</li>
+                        <li>Выбирайте категорию, к которой относится фотография</li>
+                        <li>Отметьте лучшие работы как "Избранное" для показа на главной</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

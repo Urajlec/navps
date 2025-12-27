@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Секция "О фотографе" -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>{{ content.greeting_title }}</h2>
+            <p class="lead">{{ content.greeting_subtitle }}</p>
+            <div class="about-text">
+                <p>{{ content.about_paragraph1 }}</p>
+                <p>{{ content.about_paragraph2 }}</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ content.projects_count }}</span>
+                    <span class="stat-label">Проектов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ content.clients_count }}</span>
+                    <span class="stat-label">Клиентов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ content.experience_years }}</span>
+                    <span class="stat-label">Лет опыта</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Категории фотографий" -->
+    <section class="categories-section" id="categories">
+        <h2>Мои работы</h2>
+        <p class="section-subtitle">Выберите категорию для просмотра работ</p>
+        
+        <div class="categories-grid">
+            {% for category in categories %}
+            <div class="category-card">
+                <a href="{% url 'category_detail' category.id %}">
+                    {% if category.cover_image %}
+                        <img src="{{ category.cover_image.url }}" alt="{{ category.name }}" class="category-cover">
+                    {% else %}
+                        <div class="category-placeholder">
+                            <span>📷</span>
+                        </div>
+                    {% endif %}
+                    <div class="category-info">
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.description|truncatewords:40 }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p class="empty-message">Категории пока не добавлены.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Можно добавить секцию для избранных фотографий -->
+    {% if featured_photos %}
+    <section class="featured-section">
+        <h2>Избранные работы</h2>
+        <div class="featured-grid">
+            {% for photo in featured_photos %}
+            <div class="featured-item">
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+                <div class="photo-caption">
+                    <h4>{{ photo.title }}</h4>
+                    <p>{{ photo.description|truncatewords:10 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}

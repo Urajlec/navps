@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Портфолио фотографа{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="/">Фотограф</a></h1>
+                    <p class="tagline">Профессиональная фотосъемка</p>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="#categories">Категории</a></li>
+                        <li><a href="#about">Обо мне</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+<!-- Основной контент -->
+<main class="main">
+    <div class="container">
+        {% block content %}{% endblock %}
+    
+        <section class="contact-section" id="contact">
+            <h2>Контакты</h2>
+            <p class="section-subtitle">Свяжитесь со мной для обсуждения вашего проекта</p>
+
+<div class="social-links">
+    <a href="{{ content.social_max_url }}" class="social-link" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'images/max.png' %}" alt="MAX" class="social-img">
+        <span>MAX</span>
+    </a>
+    
+    <a href="{{ content.social_vk_url }}" class="social-link" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145813.png" alt="VK" class="social-img">
+        <span>VK</span>
+    </a>
+    
+    <a href="{{ content.social_telegram_url }}" class="social-link" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="social-img">
+        <span>Telegram</span>
+    </a>
+    
+    <a href="{{ content.social_whatsapp_url }}" class="social-link" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp" class="social-img">
+        <span>WhatsApp</span>
+    </a>
+</div>
+        </section>
+
+<!-- В portfolio/index.html в секции контактов -->
+<div class="contact-info">
+    {% if contacts.phone %}
+    <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-details">
+            <h3>Телефон</h3>
+            <a href="{{ contacts.phone.processed_value }}">{{ contacts.phone.value }}</a>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if contacts.email %}
+    <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-details">
+            <h3>Email</h3>
+            <a href="{{ contacts.email.processed_value }}">{{ contacts.email.value }}</a>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if contacts.address %}
+    <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-details">
+            <h3>Адрес</h3>
+            <p>{{ contacts.address.value }}</p>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if contacts.work_hours %}
+    <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <div class="contact-details">
+            <h3>Часы работы</h3>
+            <p>{{ contacts.work_hours.value }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+    </div>
+</main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Портфолио фотографа</h3>
+                    <p>© {% now "Y" %} Все права защищены</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#contact">Контакты</a>
+                    <a href="#privacy">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+</body>
+</html>

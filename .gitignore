@@ -1,0 +1,331 @@
+# ==============================
+# Django & Python
+# ==============================
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+!media/.gitkeep
+
+# Django migrations (исключаем только автоматически созданные)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Translations
+*.mo
+
+# ==============================
+# Environment & Secrets
+# ==============================
+
+# Environment variables
+.env
+.env.*
+.env.production
+.env.development
+.secrets
+secrets.txt
+credentials.json
+*.pem
+*.key
+*.crt
+*.cert
+config.local.*
+
+# Virtual environments
+.venv
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# ==============================
+# Docker
+# ==============================
+
+# Docker Compose
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.prod.yml
+!docker-compose.staging.yml
+
+# Docker volumes
+postgres_data/
+mysql_data/
+redis_data/
+data/
+volumes/
+
+# Docker build
+.dockerignore
+Dockerfile.*
+!Dockerfile
+
+# ==============================
+# Database & Backups
+# ==============================
+
+# Database dumps
+*.dump
+*.backup
+*.bak
+*.sql
+db_backup.*
+*.tar.gz
+*.zip
+backup/
+
+# ==============================
+# IDE & Editors
+# ==============================
+
+# VS Code
+.vscode/
+*.code-workspace
+!.vscode/settings.json.example
+!.vscode/extensions.json.example
+
+# PyCharm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Other editors
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-*
+*.komodoproject
+
+# ==============================
+# OS & System
+# ==============================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ==============================
+# Logs
+# ==============================
+
+logs/
+*.log
+log/
+*.log.*
+nginx/*.log
+nginx/logs/
+
+# ==============================
+# Project Specific
+# ==============================
+
+# Nginx конфиги (разработка)
+nginx/conf.d/
+nginx/sites-available/
+nginx/sites-enabled/
+!nginx/nginx.conf
+
+# Файлы разработки
+docker-compose.debug.yml
+docker-compose.dev.yml
+docker-dev.yml
+
+# Тестовые данные
+fixtures/
+test_data/
+sample_data/
+
+# Временные файлы
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ==============================
+# Assets & Uploads
+# ==============================
+
+# Фотографии/медиа разработки
+uploads/
+user_uploads/
+test_images/
+*.psd
+*.ai
+*.sketch
+*.xd
+
+# ==============================
+# Build & Deployment
+# ==============================
+
+# Сборка
+build/
+dist/
+*.whl
+*.tar.gz
+
+# Деплой
+.deploy/
+deploy/
+ansible/
+terraform/
+.circleci/
+.travis.yml
+.gitlab-ci.yml
+.github/workflows/*.yml
+!.github/workflows/production.yml
+
+# ==============================
+# Node/JavaScript
+# ==============================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ==============================
+# Python Packaging
+# ==============================
+
+# Poetry
+poetry.lock
+
+# Pipenv
+Pipfile.lock
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# ==============================
+# Documentation
+# ==============================
+
+# MkDocs
+site/
+
+# Sphinx
+_build/
+docs/_build/
+
+# ==============================
+# Git
+# ==============================
+
+# Git hooks
+.git-hooks/
+
+# ==============================
+# Custom (проект navps)
+# ==============================
+
+# Файлы, специфичные для этого проекта
+backups/
+*.backup.sql
+media_backup.*
+db_dumps/
+secrets/
+configs/local/
+
+# Временные файлы разработки
+*.env.dev
+.env.test
+.idea_modules/
+
+# ==============================
+# Дополнительные исключения
+# ==============================
+
+# Файлы миграций (кроме автоматически созданных)
+# !*/migrations/
+# !*/migrations/__init__.py
+
+# Файлы, которые нужно коммитить
+!.gitkeep
+!.gitignore
+!README.md
+!LICENSE
+!requirements.txt
+!docker-compose.yml
+!Dockerfile
+!nginx/nginx.conf
+!manage.py
+
+# Docker Compose (продакшен/локальные настройки)
+docker-compose.yml
+docker-compose.override.yml
+
+# Nginx конфиг (продакшен)
+nginx/nginx.conf
