@@ -184,7 +184,6 @@ nginx/logs/
 nginx/conf.d/
 nginx/sites-available/
 nginx/sites-enabled/
-!nginx/nginx.conf
 
 # Файлы разработки
 docker-compose.debug.yml
